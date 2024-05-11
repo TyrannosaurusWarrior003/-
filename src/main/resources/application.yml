@@ -1,0 +1,9 @@
+
+#服务端的开发版本
+#服务端的正式版本
+#服务端的测试版本
+spring:
+  profiles:
+    active: dev
+
+

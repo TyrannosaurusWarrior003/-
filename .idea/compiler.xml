@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="agriculture" />
+        <module name="reggie_take_out" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="brand-case" target="8" />
+      <module name="spring_17_aop_demo" target="1.5" />
+      <module name="spring_18_aop_quickstart" target="1.5" />
+      <module name="spring_19_aop_pointcut" target="1.5" />
+      <module name="spring_20_aop_advice_type" target="1.5" />
+      <module name="springboot_01_quickstart" target="1.8" />
+      <module name="springmvc_08_ssm" target="1.5" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="agriculture" options="-parameters" />
+      <module name="reggie_take_out" options="-parameters" />
+      <module name="springboot_01_quickstart" options="-parameters" />
+    </option>
+  </component>
+</project>

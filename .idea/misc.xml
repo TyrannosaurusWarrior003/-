@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$/../../../CodeSpace/brand-case" />
+    <file type="web" url="file://$PROJECT_DIR$/../../../CodeSpace/src/main/java" />
+    <file type="web" url="file://$PROJECT_DIR$/../../../CodeSpace/src/main/resources" />
+    <file type="web" url="file://$PROJECT_DIR$/../../../CodeSpace/src/test/java" />
+    <file type="web" url="file://$PROJECT_DIR$" />
+    <file type="web" url="file://E:/阶段04：热门框架/02 SpringMVC/day02-SpringMVC/03-源码/springmvc/springmvc/springmvc_08_ssm" />
+  </component>
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/../../../3，4，5，6阶段Java/阶段05：项目实战-瑞吉外卖/01-瑞吉外卖项目/03-代码/代码/day06/reggie_take_out/reggie_take_out/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>
