@@ -13,6 +13,7 @@ import com.gxa.agriculture.entity.vo.UserVo;
 import com.gxa.agriculture.mapper.UserMapper;
 import com.gxa.agriculture.service.UserService;
 import com.gxa.agriculture.util.BCryptUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -41,7 +42,6 @@ import java.util.UUID;
 //@Service("userService")
 @Service()
 @Transactional(rollbackFor = Throwable.class)
-
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
 
 
@@ -92,6 +92,13 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         return userVo;
     }
 
+
+    /**
+     * registerImpl
+     * @param dto
+     * @return
+     * @throws BizException
+     */
     @Override
     public User register(UserRegisterDto dto) throws BizException {
 
@@ -108,20 +115,23 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             throw new BizException(ErrorCode.ALREADY_REGISTER);
         }
 
-
         //查询无数据
         //保存数据
         //数据库返回id
         int id = 123;
 
-
         //赋值
         User user = new User();
         user.setId(id);
+
         BeanUtils.copyProperties(dto, user);
+
+        //将密码编码，然后修改user的pwd
+        String encode = BCryptUtil.encode(dto.getPwd());
+        user.setPwd(encode);
+
         //存入数据库
         boolean isSave = this.save(user);
-
 
         return user;
     }

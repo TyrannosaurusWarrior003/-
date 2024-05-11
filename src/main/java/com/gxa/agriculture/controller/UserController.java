@@ -80,7 +80,12 @@ public class UserController {
     }
 
 
-
+    /**
+     * 用户注册方法
+     * @param dto
+     * @return
+     * @throws BizException
+     */
     @ApiOperation(tags = "用户注册方法", value = "register")
     @PostMapping("/register")
     public R register(@RequestBody UserRegisterDto dto) throws BizException {
@@ -95,47 +100,6 @@ public class UserController {
         //返回结果给前端
         return R.success(user);
     }
-
-
-
-    /**
-     * 用户注册方法
-     *
-     * @param dto
-     * @return
-     */
-
-    @ApiOperation(tags = "用户注册方法", value = "register2", notes = "{\n" +
-            "  \"name\": \"mdh\",\n" +
-            "  \"phone\": \"1988\",\n" +
-            "  \"pwd\": \"123456\"\n" +
-            "}")
-    @PostMapping("/register2")
-    public R<User> register2(@RequestBody UserRegisterDto dto) throws BizException {
-
-        //-------------------------注册失败------------------------------------------
-        //模拟数据库查询到重复数据
-        if ("133".equals(dto.getPhone())){
-            //抛出异常
-            throw new BizException(ErrorCode.ALREADY_REGISTER);
-        }
-
-        //--------------------------注册成功-----------------------------------------
-        //从数据库返回的id
-        int id = 100;
-
-        //创建user实体类
-        com.gxa.agriculture.entity.pojo.User user = new com.gxa.agriculture.entity.pojo.User();
-
-        //赋值
-        BeanUtils.copyProperties(dto, user);
-        user.setId(id);
-
-        log.info("用户信息：" + dto);
-        return R.success(user);
-    }
-
-
 
 
 }
