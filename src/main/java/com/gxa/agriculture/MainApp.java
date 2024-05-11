@@ -11,6 +11,7 @@ import java.util.UUID;
 @MapperScan(basePackages = "com/gxa/agriculture/mapper")
 public class MainApp {
 
+
     public static void main(String[] args) {
         SpringApplication.run(MainApp.class);
     }
