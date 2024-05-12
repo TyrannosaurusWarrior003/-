@@ -111,24 +111,31 @@ public class UserController {
         return R.success(user);
     }
 
+    /**
+     * 简单分页查询
+     * @param dto
+     * @return
+     * @throws BizException
+     */
+    @ApiOperation(tags = "分页查询", value = "简单分页查询")
     @PostMapping("/page")
     public R page(@RequestBody PageDto dto) {
 
         Page<User> page = new Page<>(dto.getCurrent(),dto.getSize());
         Page<User> result = userService.page(page);
-        long total = result.getTotal();
-        List<User> records = result.getRecords();
 
         //声明Map来封装total和records
        /* Map<String, Object> map = new HashMap<>();
         map.put("total",total);
         map.put("records",records);*/
 
-        //PageResults.getData.var
-        PageResults<List<User>> pageResults = new PageResults();
-        pageResults.setTotal(total);
-        pageResults.setRecodes(records);
 
+        //取出目标数据并封装
+        long total = result.getTotal();
+        List<User> records = result.getRecords();
+        PageResults<List<User>> pageResults = PageResultsUtil.getData(total, records);
+
+        //返回前端
         return R.success(pageResults);
     }
 
@@ -137,6 +144,13 @@ public class UserController {
      */
 
 
+    /**
+     * 手机号模糊匹配的分页查询
+     * @param dto
+     * @return
+     * @throws BizException
+     */
+    @ApiOperation(tags = "分页查询", value = "手机号模糊匹配的分页查询")
     @PostMapping("/pageLikePhone")
     public R pageLikePhone(@RequestBody UserPageDto dto) {
 
@@ -151,15 +165,12 @@ public class UserController {
         //获取到数据库的数据
         Page<User> result = userService.page(page, queryWrapper);
 
-        //解析数据
+        //取出目标数据并封装
         long total = result.getTotal();
         List<User> records = result.getRecords();
-
-
         //PageResults<List<User>> pageResults = new PageResults();
         //pageResults.setTotal(total);
         //pageResults.setRecodes(records);
-
         PageResults<List<User>> pageResults = PageResultsUtil.getData(total, records);
 
         //将解析的数据返回给前端
