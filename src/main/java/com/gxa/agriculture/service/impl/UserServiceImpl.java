@@ -117,12 +117,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
         //查询无数据
         //保存数据
-        //数据库返回id
-        int id = 123;
+
 
         //赋值
         User user = new User();
-        user.setId(id);
 
         BeanUtils.copyProperties(dto, user);
 
@@ -131,8 +129,13 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         user.setPwd(encode);
 
         //存入数据库
-        boolean isSave = this.save(user);
+        this.save(user);
 
-        return user;
+        //数据库返回id
+        queryWrapper.clear();
+        queryWrapper.eq(User::getPhone, dto.getPhone());
+        User backUser = getOne(queryWrapper);
+
+        return backUser;
     }
 }
