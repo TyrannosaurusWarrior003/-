@@ -67,9 +67,6 @@ public class UserController {
 
         }*/
 
-
-
-
         // 调用service
         UserVo login = userService.login(dto);
 
@@ -82,6 +79,7 @@ public class UserController {
 
     /**
      * 根据id查询
+     *
      * @param id
      * @return
      * @throws BizException
@@ -112,7 +110,7 @@ public class UserController {
      */
     @ApiOperation(tags = "用户注册方法", value = "register")
     @PostMapping("/register")
-    public R register(@RequestBody UserRegisterDto dto) throws BizException {
+    public R register(@Valid @RequestBody UserRegisterDto dto) throws BizException {
 
         //校验数据
 
@@ -148,15 +146,11 @@ public class UserController {
         //取出目标数据并封装
         long total = result.getTotal();
         List<User> records = result.getRecords();
-        PageResults<List<User>> pageResults = PageResultsUtil.getData(total, records);
+        //PageResults<List<User>> pageResults = PageResultsUtil.getData(total, records);
 
         //返回前端
-        return R.success(pageResults);
+        return R.success(total, records);
     }
-
-    /**
-     * 通过手机号模糊查询。并分页
-     */
 
 
     /**
@@ -170,10 +164,6 @@ public class UserController {
     @PostMapping("/pageLikePhone")
     public R pageLikePhone(@RequestBody UserPageDto dto) {
 
-        log.info("phone:{}", dto.getPhone());
-        log.info("curren:{}", dto.getPageDto().getCurrent());
-        log.info("size:{}", dto.getPageDto().getSize());
-
         Page<User> page = new Page<>(dto.getPageDto().getCurrent(), dto.getPageDto().getSize());
         LambdaQueryWrapper<User> queryWrapper = Wrappers.lambdaQuery(User.class);
         queryWrapper.like(User::getPhone, dto.getPhone());
@@ -181,16 +171,16 @@ public class UserController {
         //获取到数据库的数据
         Page<User> result = userService.page(page, queryWrapper);
 
-        //取出目标数据并封装
+        //取出目标数据并调用success的封装方法
         long total = result.getTotal();
         List<User> records = result.getRecords();
         //PageResults<List<User>> pageResults = new PageResults();
         //pageResults.setTotal(total);
         //pageResults.setRecodes(records);
-        PageResults<List<User>> pageResults = PageResultsUtil.getData(total, records);
+        //PageResults<List<User>> pageResults = PageResultsUtil.getData(total, records);
 
         //将解析的数据返回给前端
-        return R.success(pageResults);
+        return R.success(total, records);
     }
 }
 

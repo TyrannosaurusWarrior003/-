@@ -18,7 +18,7 @@ public class MPGenerator {
         // 把连接url改成适配自己数据库的方式
         String url = "jdbc:mysql://localhost:3306/db_hualian? characterEncoding=UTF8&serverTimezone=Asia/Shanghai";
         String username = "root";
-        String password = "root";
+        String password = "1234";
         FastAutoGenerator.create(url, username, password)
                 // 基础全局配置
                 .globalConfig(builder -> {
@@ -26,7 +26,7 @@ public class MPGenerator {
                             .commentDate("yyyy-MM-dd")
                             .enableSwagger() // 开启 swagger 模式,给实体类pojo/controller添加swagger的注解
                             .fileOverride() // 覆盖已生成文件
-                            .outputDir("D://generator"); // 指定输出目录
+                            .outputDir("C:\\Users\\mdh\\Desktop\\国信安实训文件\\01\\day01代码\\src\\main\\java\\bak"); // 指定输出目录
                 })
                 // 包的配置
                 .packageConfig(builder -> {

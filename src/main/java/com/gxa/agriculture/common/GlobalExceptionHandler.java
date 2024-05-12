@@ -40,6 +40,7 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public R handlerBizException(MethodArgumentNotValidException ex) {
+        //ex.printStackTrace();
 
         //获取校验异常对象绑定结果
         BindingResult bindingResult = ex.getBindingResult();
