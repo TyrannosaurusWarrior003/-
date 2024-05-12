@@ -83,7 +83,6 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <scope>test</scope>
         </dependency>
 
 
@@ -94,13 +93,6 @@
             <version>5.2.1.RELEASE</version>
         </dependency>
 
-
-
-
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-        </dependency>
 
         <!--<dependency>
           <groupId>org.mybatis.spring.boot</groupId>
@@ -114,6 +106,12 @@
         </dependency>-->
         <!--里面的内容要删除-->
 
+
+        <!--可以省略的数据校验依赖-->
+       <!-- <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>-->
 
 
     </dependencies>

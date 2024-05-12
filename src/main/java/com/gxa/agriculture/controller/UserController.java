@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -50,16 +51,24 @@ public class UserController {
      * @param dto
      * @return
      */
-
     @ApiOperation(tags = "用户登录方法", value = "login", notes = "{\n" +
             "  \"phone\": \"133\",\n" +
             "  \"pwd\": \"123456\"\n" +
             "}")
     @PostMapping("/login")
     //这里的R可以返回R<String>或R<UserVo>取决于返回什么
-    public R login(@RequestBody UserLoginDto dto) throws  BizException{
+    public R login(@Valid @RequestBody UserLoginDto dto) throws BizException {
 
         //FIXME 数据校验
+        /*if (!"".equals(dto.getPhone()) && dto.getPhone() != null) {
+
+        }
+        if (!"".equals(dto.getPhone()) && dto.getPhone() != null) {
+
+        }*/
+
+
+
 
         // 调用service
         UserVo login = userService.login(dto);
@@ -71,11 +80,15 @@ public class UserController {
     }
 
 
-
-    //查询
+    /**
+     * 根据id查询
+     * @param id
+     * @return
+     * @throws BizException
+     */
     @ApiOperation(tags = "根据id查询", value = "getById")
     @GetMapping("/getById")
-    public R<User> getById( Integer id) throws BizException {
+    public R<User> getById(Integer id) throws BizException {
 
         //从业务层得到数据
         User user = userService.getById(id);
@@ -92,6 +105,7 @@ public class UserController {
 
     /**
      * 用户注册方法
+     *
      * @param dto
      * @return
      * @throws BizException
@@ -113,6 +127,7 @@ public class UserController {
 
     /**
      * 简单分页查询
+     *
      * @param dto
      * @return
      * @throws BizException
@@ -121,7 +136,7 @@ public class UserController {
     @PostMapping("/page")
     public R page(@RequestBody PageDto dto) {
 
-        Page<User> page = new Page<>(dto.getCurrent(),dto.getSize());
+        Page<User> page = new Page<>(dto.getCurrent(), dto.getSize());
         Page<User> result = userService.page(page);
 
         //声明Map来封装total和records
@@ -146,6 +161,7 @@ public class UserController {
 
     /**
      * 手机号模糊匹配的分页查询
+     *
      * @param dto
      * @return
      * @throws BizException
