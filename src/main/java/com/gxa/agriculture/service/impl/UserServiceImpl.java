@@ -68,7 +68,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         String pwd = user.getPwd();
 
         //密码的判断
+        //此处第一个参数必须传入未编码的参数，第二个参数必须是编码的。才能返回true
         boolean matches = BCryptUtil.matches(dto.getPwd(), pwd);
+
 
 
         //没有数据
